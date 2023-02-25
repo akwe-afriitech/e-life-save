@@ -1,16 +1,3 @@
 # e_life_saver
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+An online health application to help people in need of blood send request to all blood donors out there close to their location in order to donate to them and save their lifes 
+more information coming up with the common work flow documnent for those who are interested in contributing and how to contribute eventually
