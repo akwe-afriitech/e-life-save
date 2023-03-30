@@ -1,6 +1,6 @@
 <div align='center'>
     <h1><b></b> E Life Saver</h1>
-    <img src='' width='250' height='250' />
+    <img src='https://github.com/akwe-afriitech/e-life-save/blob/main/assets/logo.png' width='250' height='250' />
     <p>An online health application to help people in need of blood send request to all blood donors out there close to their location in order to donate to them and save their lifes 
 more information coming up with the common work flow documnent for those who are interested in contributing and how to contribute eventually
 </p>
