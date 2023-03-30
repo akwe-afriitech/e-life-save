@@ -16,10 +16,15 @@ more information coming up with the common work flow documnent for those who are
 ### This code is running on the following versions
 
 ** Flutter version `3.7.8` (Channel stable)
+
 ** Android SDK `33.0.0` (Android SDK version 33.0.0 or higher)
+
 ** gradle version `8.0.2`
+
 ** Windows Version `windows 10` (Installed a version of Windows 10 or higher)
+
 ** Android Studio version `2020.3`  (or higher)
+
 ** VS Code version `1.76.1` (or higher)
 
 
