@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.e_life_saver">
    <application
-        android:label="e_life_saver"
+        android:label="E Life Saver"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
