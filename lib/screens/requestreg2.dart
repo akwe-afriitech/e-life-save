@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_life_saver/screens/login.dart';
 import 'package:e_life_saver/screens/receipdash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ussd_advanced/ussd_advanced.dart';
 
@@ -188,132 +186,134 @@ class _requestreg2State extends State<requestreg2> {
                           onPressed: (){
                             final isValid = formkey.currentState!.validate();
                             if(!isValid)return;
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                contentPadding: const EdgeInsets.all(10),
-                                content: Container(
-                                  height: 250,
-                                  margin: EdgeInsets.all(0),
-                                  padding: const EdgeInsets.all(5),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        child: Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            child: const Text(
-                                              "Pay Service Charge",
-                                              style:
-                                              TextStyle(fontSize: 25,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Text("In order to make a blood requst, "),
-                                      Text("you have to pay a platform of , "),
-                                      Container(
-                                        width: 150,
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black54, width: 3),
-                                            borderRadius: BorderRadius.circular(15)
-                                        ),
-                                        padding: EdgeInsets.all(10),
-                                        child: Text('500', style:
-                                        TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 25
-                                        ),),
-                                      ),
-                                      Text('Click to pay'),
-                                      Expanded(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Container(
-                                                child: ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                    fixedSize: const Size(100, 40),
-                                                    shape: const StadiumBorder(),
-                                                  ),
-                                                  child: const Text("Cancel"),
-                                                  onPressed: () => Navigator.pop(context),
-                                                ),
-                                              ),
-                                              Container(
-                                                child: ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                    fixedSize: const Size(100, 40),
-                                                    shape: const StadiumBorder(),
-                                                  ),
-                                                  onPressed: () {
-                                                    UssdAdvanced.sendUssd(code: "*126*9*650204677*500#", subscriptionId: 1);
-                                                    Timer(Duration(seconds: 5),
-                                                            () =>
-                                                            Navigator.push(context,
-                                                                MaterialPageRoute(builder:
-                                                                    (context) => receipdash()
-                                                                )
-                                                            )
-                                                    );
-                                                    if (user != null){
-                                                      DateTime _now = DateTime.now();
-                                                      final uid = user?.uid;
-                                                      CollectionReference userData = FirebaseFirestore.instance.collection('userData').doc(uid).collection('request');
-                                                      DocumentReference users = FirebaseFirestore.instance.collection('userData').doc(uid);
-                                                      CollectionReference request = FirebaseFirestore.instance.collection('request');
-                                                      userData.add({
-                                                        "date" : _now,
-                                                        'phonenumber':_phonenumber,
-                                                        'dob':_dob,
-                                                        'bob':_bob,
-                                                        'medicalinfo': _medicalinfo,
-                                                        'bg': _bgr,
-                                                        'location': _location,
-                                                        'rh': _rhr,
-                                                      });
-                                                      request.add({
-                                                         "date" : _now,
-                                                        'phonenumber':_phonenumber,
-                                                        'dob':_dob,
-                                                        'bob':_bob,
-                                                        'medicalinfo': _medicalinfo,
-                                                        'bg': _bgr,
-                                                        'location': _location,
-                                                        'rh': _rhr,
-                                                      });
-                                                      users.set({
-                                                        "role":"request",
-                                                      });
-
-                                                    }
-
-                                                  },
-                                                  child: const Text("Pay"),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            if (user != null){
+                              DateTime _now = DateTime.now();
+                              final uid = user?.uid;
+                              CollectionReference userData = FirebaseFirestore.instance.collection('userData').doc(uid).collection('request');
+                              DocumentReference users = FirebaseFirestore.instance.collection('userData').doc(uid);
+                              CollectionReference request = FirebaseFirestore.instance.collection('request');
+                              userData.add({
+                                "date" : _now,
+                                'phonenumber':_phonenumber,
+                                'dob':_dob,
+                                'bob':_bob,
+                                'medicalinfo': _medicalinfo,
+                                'bg': _bgr,
+                                'location': _location,
+                                'rh': _rhr,
+                              });
+                              request.add({
+                                "date" : _now,
+                                'phonenumber':_phonenumber,
+                                'dob':_dob,
+                                'bob':_bob,
+                                'medicalinfo': _medicalinfo,
+                                'bg': _bgr,
+                                'location': _location,
+                                'rh': _rhr,
+                              });
+                              users.set({
+                                "role":"request",
+                              });
+                            }
+                            Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (context)
+                                    => const receipdash()
+                                )
                             );
 
-                            // Navigator.push(context,
-                            //   MaterialPageRoute(builder:
-                            //       (context) =>
-                            //       const receipdash()
-                            //   ),);
+
+
+                            // showDialog(
+                            //   context: context,
+                            //   builder: (context) => AlertDialog(
+                            //     contentPadding: const EdgeInsets.all(10),
+                            //     content: Container(
+                            //       height: 250,
+                            //       margin: EdgeInsets.all(0),
+                            //       padding: const EdgeInsets.all(5),
+                            //       child: Column(
+                            //         children: [
+                            //           Container(
+                            //             child: Expanded(
+                            //               child: Container(
+                            //                 alignment: Alignment.center,
+                            //                 child: const Text(
+                            //                   "Pay Service Charge",
+                            //                   style:
+                            //                   TextStyle(fontSize: 25,
+                            //                       fontWeight: FontWeight.bold),
+                            //                 ),
+                            //               ),
+                            //             ),
+                            //           ),
+                            //           Text("In order to make a blood requst, "),
+                            //           Text("you have to pay a platform of , "),
+                            //           Container(
+                            //             width: 150,
+                            //             alignment: Alignment.center,
+                            //             margin: EdgeInsets.all(5),
+                            //             decoration: BoxDecoration(
+                            //                 border: Border.all(color: Colors.black54, width: 3),
+                            //                 borderRadius: BorderRadius.circular(15)
+                            //             ),
+                            //             padding: EdgeInsets.all(10),
+                            //             child: Text('500', style:
+                            //             TextStyle(
+                            //                 fontWeight: FontWeight.bold,
+                            //                 fontSize: 25
+                            //             ),),
+                            //           ),
+                            //           Text('Click to pay'),
+                            //           Expanded(
+                            //             child: Container(
+                            //               padding: const EdgeInsets.symmetric(
+                            //                   vertical: 10.0),
+                            //               child: Row(
+                            //                 mainAxisAlignment:
+                            //                 MainAxisAlignment.spaceEvenly,
+                            //                 children: [
+                            //                   Container(
+                            //                     child: ElevatedButton(
+                            //                       style: ElevatedButton.styleFrom(
+                            //                         fixedSize: const Size(100, 40),
+                            //                         shape: const StadiumBorder(),
+                            //                       ),
+                            //                       child: const Text("Cancel"),
+                            //                       onPressed: () => Navigator.pop(context),
+                            //                     ),
+                            //                   ),
+                            //                   Container(
+                            //                     child: ElevatedButton(
+                            //                       style: ElevatedButton.styleFrom(
+                            //                         fixedSize: const Size(100, 40),
+                            //                         shape: const StadiumBorder(),
+                            //                       ),
+                            //                       onPressed: () {
+                            //                         UssdAdvanced.sendUssd(code: "*126*9*650204677*500#", subscriptionId: 1);
+                            //                         Timer(Duration(seconds: 5),
+                            //                                 () =>
+                            //                                 Navigator.push(context,
+                            //                                     MaterialPageRoute(builder:
+                            //                                         (context) => receipdash()
+                            //                                     )
+                            //                                 )
+                            //                         );
+                            //                       },
+                            //                       child: const Text("Pay"),
+                            //                     ),
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
+
                           },
                           child: const Text('Register')
                       ),

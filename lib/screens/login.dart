@@ -23,7 +23,6 @@ class _loginState extends State<login> {
  void dispose(){
    emailController.dispose();
    passwordController.dispose();
-
    super.dispose();
  }
   @override
@@ -42,13 +41,11 @@ class _loginState extends State<login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        child: Image(image:AssetImage('assets/logo.png'),),
+                        child: const Image(image:AssetImage('assets/logo.png'),),
                       ),
                       Container(
                         padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-
-                        ),
+                        decoration: const BoxDecoration(),
                         child: const Text('Login', style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -96,10 +93,11 @@ class _loginState extends State<login> {
                               fixedSize: const Size(300, 40),
                               shape: const StadiumBorder(),
                             ),
-                            onPressed: () {Navigator.push(context,
+                            onPressed: () {
+                              Navigator.pushReplacement(context,
                               MaterialPageRoute(builder:
                                   (context) =>
-                                  init()
+                                  const init()
                               ),);},
                             child: const Text('Register')
                         ),
@@ -122,7 +120,7 @@ class _loginState extends State<login> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => Center(child: CircularProgressIndicator(),)
+        builder: (context) => const Center(child: CircularProgressIndicator(),)
     );
 
     try {
@@ -134,10 +132,10 @@ class _loginState extends State<login> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-    Navigator.push(context,
+    Navigator.pushReplacement(context,
       MaterialPageRoute(builder:
           (context) =>
-          splash()
+          const splash()
       ),);
 
   }

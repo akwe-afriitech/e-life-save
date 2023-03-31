@@ -67,11 +67,24 @@ class bloodAppeals extends StatelessWidget {
                     return ListView.builder(
                       itemCount: data1.size,
                       itemBuilder: (context, index){
+                        Timestamp t =data1.docs[index]['date'] as Timestamp;
+                        DateTime date = t.toDate();
                         return ListTile(
-                          leading: const Icon(Icons.bloodtype_outlined),
-                          title: Text("Location: ${data1.docs[0]['location']} "),
-                          subtitle: Text("Blood Request type: ${data1.docs[0]['bg']} "),
+                          leading: const Icon(Icons.bloodtype_outlined, color:Colors.red),
+                          title: Text("Location: ${data1.docs[index]['location']} "),
+                          subtitle: Text("Blood Request type: ${data1.docs[index]['bg']} "),
                           onTap: () {},
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("date"),
+                              Text("${date.day}/${date.month}", style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 17
+                              ),),
+                            ],
+                          ),
                         );
                       },
                     );

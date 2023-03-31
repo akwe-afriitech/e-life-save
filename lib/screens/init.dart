@@ -1,4 +1,5 @@
 import 'package:e_life_saver/screens/donorreg.dart';
+import 'package:e_life_saver/screens/login.dart';
 import 'package:e_life_saver/screens/requestreg.dart';
 import 'package:flutter/material.dart';
 
@@ -11,24 +12,24 @@ class init extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            height: 350,
+            height: 380,
             child: Column(
               children: [
                 Container(
-                  child: Image(image:AssetImage('assets/logo.png'),),
+                  child: const Image(image:AssetImage('assets/logo.png'),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(280, 60),
-                      shape: StadiumBorder(),
+                      fixedSize: const Size(250, 50),
+                      shape: const StadiumBorder(),
                     ),
                       onPressed: (){
                         showDialog(
                             context: context,
                             barrierDismissible: false,
-                            builder: (context)=> Center(child: CircularProgressIndicator(),)
+                            builder: (context)=> const Center(child: CircularProgressIndicator(),)
                         );
                         Navigator.push(context,
                             MaterialPageRoute(builder:
@@ -36,7 +37,7 @@ class init extends StatelessWidget {
                             requestreg()
                         ),);
                       },
-                      child: Text('Request',
+                      child: const Text('Request For Blood',
                       style:TextStyle(
                         fontSize: 17
                       ) ,
@@ -47,14 +48,14 @@ class init extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: Size(280,60),
-                        shape: StadiumBorder(),
+                        fixedSize: const Size(260,50),
+                        shape: const StadiumBorder(),
                       ),
                       onPressed: (){
                         showDialog(
                             context: context,
                             barrierDismissible: false,
-                            builder: (context)=> Center(child: CircularProgressIndicator(),)
+                            builder: (context)=> const Center(child: CircularProgressIndicator(),)
                         );
                         Navigator.push(context,
                           MaterialPageRoute(builder:
@@ -62,11 +63,39 @@ class init extends StatelessWidget {
                               donorreg(),
                           ),);
                       },
-                      child: Text('Donate',
+                      child: const Text('Donate Blood',
                       style: TextStyle(
                         fontSize: 17
                       ),
                       )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an Account:'),
+                      TextButton(
+                          onPressed: (){
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context)=> const Center(child: CircularProgressIndicator(),)
+                            );
+                            Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder:
+                                  (context) =>
+                                  login(),
+                              ),);
+                          },
+                          child: const Text('Login',
+                            style: TextStyle(
+                                fontSize: 17
+                            ),
+                          )
+                      ),
+                    ],
                   ),
                 ),
               ],

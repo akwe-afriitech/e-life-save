@@ -198,7 +198,7 @@ class _donorreg2State extends State<donorreg2> {
                                 "role":"donor",
                               });
                             }
-                            Navigator.push(context,
+                            Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder:
                                     (context) => donordash()
                                 )

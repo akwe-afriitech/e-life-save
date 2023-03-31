@@ -16,15 +16,16 @@ class donorn extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
                 // border: Border.all(width: 3, color: Colors.red)
               ),
-              child: Text('No New Notifications',
+              child: const Text('No New Notifications',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 30
+                    fontSize: 30,
+                  color: Colors.red,
                 ),
               ),
             ),
@@ -36,7 +37,7 @@ class donorn extends StatelessWidget {
                   border: Border.all(width: 2, color: Colors.grey),
                   borderRadius: BorderRadius.circular(20)
               ),
-              child: Text("No new notifications yet"),
+              child: const Text("No new notifications yet"),
             ),
 
           ],

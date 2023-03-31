@@ -67,12 +67,28 @@ class donorbr extends StatelessWidget {
                   final data1 = snapshot.requireData;
                   return ListView.builder(
                     itemCount: data1.size,
+
                     itemBuilder: (context, index){
+                      Timestamp t =data1.docs[index]['date'] as Timestamp;
+                      DateTime date = t.toDate();
                       return ListTile(
-                        leading: const Icon(Icons.bloodtype_outlined),
+                        tileColor: Colors.grey[100],
+                        leading: const Icon(Icons.bloodtype_outlined,
+                        color: Colors.red,),
                         title: Text("Location: ${data1.docs[index]['location']} "),
                         subtitle: Text("Blood Request type: ${data1.docs[index]['bg']} "),
                         onTap: () {},
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("${date.hour}:${date.minute}"),
+                            Text("${date.day}/${date.month}", style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17
+                            ),),
+                          ],
+                        ),
                         shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black, width: 1),
                           borderRadius: BorderRadius.circular(5),

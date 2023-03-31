@@ -20,6 +20,7 @@ class _requestregState extends State<requestreg> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  var _nameController = '';
 
   @override
   void dispose() {
@@ -36,7 +37,7 @@ class _requestregState extends State<requestreg> {
         child: SafeArea(
           child: Container(
             child: Padding (
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Form(
                 key: formkey,
                 child: Column(
@@ -52,9 +53,18 @@ class _requestregState extends State<requestreg> {
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline
-                        ),),
+                        ),
+                      ),
                     ),
                     TextFormField(
+                      onChanged: (value){
+                         _nameController = value;
+                      },
+                      validator: (value){
+                        if(value != null){'Please Enter Your Name';}
+                        else
+                          { null;}
+                        },
                       decoration: const InputDecoration(
                           labelText: 'Full Name'
                       ),
@@ -92,20 +102,31 @@ class _requestregState extends State<requestreg> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(300, 40),
-                            shape: const StadiumBorder(),
+                      padding: const EdgeInsets.all(2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Already have an Account:'),
+                          TextButton(
+                              onPressed: (){
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context)=> const Center(child: CircularProgressIndicator(),)
+                                );
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder:
+                                      (context) =>
+                                      login(),
+                                  ),);
+                              },
+                              child: const Text('Login',
+                                style: TextStyle(
+                                    fontSize: 17
+                                ),
+                              )
                           ),
-                          onPressed: () {
-                            Navigator.push(context,
-                              MaterialPageRoute(builder:
-                                  (context) =>
-                                  login()
-                              ),);
-                          },
-                          child: const Text('Login')
+                        ],
                       ),
                     ),
                   ],
@@ -129,7 +150,10 @@ class _requestregState extends State<requestreg> {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
-        password: passwordController.text.trim(),);
+        password: passwordController.text.trim(),
+      );
+      await FirebaseAuth.instance.currentUser?.updateDisplayName(_nameController);
+
     } on FirebaseException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);

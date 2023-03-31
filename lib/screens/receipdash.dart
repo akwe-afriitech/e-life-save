@@ -44,10 +44,10 @@ class _receipdashState extends State<receipdash> {
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
-                      return Text("error loading data");
+                      return const Text("error loading data");
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("loading.....");
+                      return const Text("loading.....");
                     }
                     final data1 = snapshot.requireData;
                     return Text(
@@ -100,27 +100,27 @@ class _receipdashState extends State<receipdash> {
               title: const Text("Upgrade Account"),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => accountr()));
+                    MaterialPageRoute(builder: (context) => const accountr()));
               },
             ),
             Container(
               width: 20,
-              margin: EdgeInsets.symmetric(horizontal: 50),
-              padding: EdgeInsets.symmetric(vertical: 50),
+              margin: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const EdgeInsets.symmetric(vertical: 50),
               child: ElevatedButton(
-                child: Text('signout'),
+                child: const Text('signout'),
                 onPressed: () {
                   showDialog(
                       context: context,
                       barrierDismissible: false,
-                      builder: (context) => Center(
+                      builder: (context) => const Center(
                             child: CircularProgressIndicator(),
                           ));
                   FirebaseAuth.instance.signOut();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => init(),
+                      builder: (context) => const init(),
                     ),
                   );
                 },
@@ -146,135 +146,166 @@ class _receipdashState extends State<receipdash> {
             Center(
               child: Container(
                   width: 400.0,
-                  height: 160.0,
-                  padding: const EdgeInsets.all(15.0),
+                  height: 150.0,
+                  padding: const EdgeInsets.all(1.0),
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.redAccent,
                       border: Border.all(color: Colors.red, width: 1.0),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.grey.shade300,
+                            color: Colors.grey.shade200,
                             blurRadius: 7,
                             spreadRadius: 1,
                             offset: const Offset(2, 2))
                       ],
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                "Name:",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                    color: Colors.black54
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              child:  Text(
-                                "${user?.displayName}",
-                                style: TextStyle(
-                                    fontSize: 27,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black87
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      borderRadius: BorderRadius.circular(40.0)),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: -40,
+                          left: -40,
+                          child:Container(
+                            width: 120,
+                            height: 127,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                                borderRadius: BorderRadius.circular(100.0),
+                  ),
+                          )
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                "Location: ",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold,
-                                    color: Colors.black54
-                                ),
-                              ),
+                      Positioned(
+                          bottom: -80,
+                          right: -50,
+                          child:Container(
+                            width: 180,
+                            height: 184,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100.0),
                             ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              child: StreamBuilder<QuerySnapshot>(
-                                stream: userData,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Text("error loading data");
-                                  }
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Text("loading.....");
-                                  }
-                                  final data1 = snapshot.requireData;
-                                  return Text(
-                                    "${data1.docs[0]['location']} ",
-                                    style: TextStyle(
-                                      fontSize:20, fontWeight: FontWeight.bold,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
+                          )
                       ),
-                      Row(
+                      Column(
                         children: [
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: const Text(
-                                "BG :",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold,
-                                    color: Colors.black54
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: const Text(
+                                    "Name:",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              child: StreamBuilder<QuerySnapshot>(
-                                stream: userData,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Text("error loading data");
-                                  }
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Text("loading.....");
-                                  }
-                                  final data1 = snapshot.requireData;
-                                  return Text(
-                                    "${data1.docs[0]['bg']} ",
-                                    style: TextStyle(
-                                      fontSize:20, fontWeight: FontWeight.bold,
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child:  Text(
+                                    "${user?.displayName}",
+                                    style: const TextStyle(
+                                        fontSize: 27,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white
                                     ),
-                                  );
-                                },
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: const Text(
+                                    "Location: ",
+                                    style: TextStyle(
+                                        fontSize: 15, fontWeight: FontWeight.bold,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: StreamBuilder<QuerySnapshot>(
+                                    stream: userData,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                                      if (snapshot.hasError) {
+                                        return const Text("error loading data");
+                                      }
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Text("loading.....");
+                                      }
+                                      final data1 = snapshot.requireData;
+                                      return Text(
+                                        "${data1.docs[0]['location']} ",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize:20, fontWeight: FontWeight.bold,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: const Text(
+                                    "BG :",
+                                    style: TextStyle(
+                                        fontSize: 15, fontWeight: FontWeight.bold,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: StreamBuilder<QuerySnapshot>(
+                                    stream: userData,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                                      if (snapshot.hasError) {
+                                        return const Text("error loading data");
+                                      }
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Text("loading.....");
+                                      }
+                                      final data1 = snapshot.requireData;
+                                      return Text(
+                                        "${data1.docs[0]['bg']} ",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize:20, fontWeight: FontWeight.bold,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
-                  )),
+                  ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
@@ -299,23 +330,37 @@ class _receipdashState extends State<receipdash> {
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
-                    return Text("error loading data");
+                    return const Text("error loading data");
                   }
                   if (snapshot.connectionState ==
                       ConnectionState.waiting) {
-                    return Text("loading.....");
+                    return const Text("loading.....");
                   }
                   final data1 = snapshot.requireData;
                   return ListView.builder(
                     itemCount: data1.size,
                       itemBuilder: (context, index){
+                      Timestamp t =data1.docs[index]['date'] as Timestamp;
+                      DateTime date = t.toDate();
                       return ListTile(
-                        leading: const Icon(Icons.bloodtype_outlined),
+                        leading: const Icon(Icons.bloodtype_outlined,
+                        color: Colors.red),
                         title: Text("Location: ${data1.docs[index]['location']} "),
-                        subtitle: Text("Blood Request type: ${data1.docs[index]['bg']} "),
+                        subtitle: Text("Blood Request Type: ${data1.docs[index]['bg']} "),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                             Text("${date.hour}:${date.minute}"),
+                            Text("${date.day}/${date.month}", style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 17
+                            ),),
+                          ],
+                        ),
                         onTap: () {},
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black, width: 1),
+                          side: const BorderSide(color: Colors.black, width: 1),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       );
@@ -326,9 +371,9 @@ class _receipdashState extends State<receipdash> {
             ),
             Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: ElevatedButton(
-                child: Text("new appeal"),
+                child: const Text("new appeal"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => requestreg2()));

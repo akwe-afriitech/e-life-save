@@ -4,10 +4,8 @@ import 'package:e_life_saver/screens/donorbr.dart';
 import 'package:e_life_saver/screens/donorn.dart';
 import 'package:e_life_saver/screens/donorr.dart';
 import 'package:e_life_saver/screens/init.dart';
-import 'package:e_life_saver/screens/login.dart';
 import 'package:e_life_saver/screens/vaccines.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class donordash extends StatelessWidget {
@@ -21,13 +19,13 @@ class donordash extends StatelessWidget {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
+              currentAccountPicture: const CircleAvatar(
                 child: Icon(Icons.person),
               ),
               accountName: Container(
-                child: Text("Name"),
+                child:  Text("Name: ${user.displayName}"),
               ),
-              accountEmail:Text('Number'),
+              accountEmail:const Text('Number: pending....'),
               otherAccountsPictures: const [
                 CircleAvatar(
                   child: Icon(Icons.person_add),
@@ -36,99 +34,99 @@ class donordash extends StatelessWidget {
             ),
             ListTile(
               tileColor: Colors.grey[200],
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
+              leading: const Icon(Icons.home),
+              title: const Text("Dashboard"),
             ),
             ListTile(
-              leading: Icon(Icons.receipt_long),
-              title: Text("Results"),
+              leading: const Icon(Icons.receipt_long),
+              title: const Text("Results"),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                    builder: ((context) => donorr()),
+                    builder: ((context) => const donorr()),
                     ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.bloodtype),
-              title: Text("Blood Request"),
+              leading: const Icon(Icons.bloodtype),
+              title: const Text("Blood Request"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => donorbr()),
+                    builder: ((context) => const donorbr()),
                   ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.bloodtype_outlined),
-              title: Text("Blood Appeal"),
+              leading: const Icon(Icons.bloodtype_outlined),
+              title: const Text("Blood Appeal"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => donora(),
+                    builder: (context) => const donora(),
                   ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
+              leading: const Icon(Icons.notifications),
+              title: const Text("Notifications"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => donorn(),
+                    builder: (context) => const donorn(),
                   ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.vaccines),
-              title: Text("Vaccines"),
+              leading: const Icon(Icons.vaccines),
+              title: const Text("Vaccines"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => vaccines(),
+                    builder: (context) => const vaccines(),
                   ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("My Account"),
+              leading: const Icon(Icons.account_circle),
+              title: const Text("My Account"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => account(),
+                    builder: (context) => const account(),
                   ),
                 );
               },
             ),
             Container(
               width: 20,
-              margin: EdgeInsets.symmetric(horizontal:50),
-              padding: EdgeInsets.symmetric(vertical:50),
+              margin: const EdgeInsets.symmetric(horizontal:50),
+              padding: const EdgeInsets.symmetric(vertical:50),
 
               child: ElevatedButton(
-                child: Text('signout') ,
+                child: const Text('signout') ,
                 onPressed: (){
                   showDialog(
                       context: context,
                       barrierDismissible: false,
-                      builder: (context)=> Center(child: CircularProgressIndicator(),)
+                      builder: (context)=> const Center(child: CircularProgressIndicator(),)
                   );
                   FirebaseAuth.instance.signOut();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => init(),
+                      builder: (context) => const init(),
                     ),
                   );
 
@@ -140,31 +138,30 @@ class donordash extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: Text('Medically Fit'),
+        title: const Text('Medical Info'),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.bloodtype)
+            icon: const Icon(Icons.bloodtype)
             ,onPressed: (){
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => donorbr(),
+                builder: (context) => const donorbr(),
               ),
             );
           },),
           IconButton(
-            icon: Icon(Icons.notifications)
+            icon: const Icon(Icons.notifications)
             ,onPressed: (){
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => donorn(),
+                builder: (context) => const donorn(),
               ),
             );
           },),
         ],
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -177,7 +174,7 @@ class donordash extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    child: Text('Dashboard', style: TextStyle(
+                    child: const Text('Dashboard', style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold
                     ),),
@@ -203,7 +200,7 @@ class donordash extends StatelessWidget {
             Container(
               width: 380,
               height: 150,
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
 
@@ -216,13 +213,13 @@ class donordash extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("pending......",
+                  const Text("pending......",
                     style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text("Last Donation",
+                  const Text("Last Donation",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w400
@@ -237,12 +234,12 @@ class donordash extends StatelessWidget {
                         elevation: 0
                       ),
                         onPressed: (){},
-                        label: Text('Learn More',
+                        label: const Text('Learn More',
                         style: TextStyle(
                           fontWeight: FontWeight.bold
                         ),
                         ),
-                        icon: Icon(Icons.forward),
+                        icon: const Icon(Icons.forward),
 
                     ),
                   )
@@ -253,8 +250,8 @@ class donordash extends StatelessWidget {
               width: 380,
               height: 160,
 
-              margin:EdgeInsets.all(15),
-              padding:EdgeInsets.symmetric(vertical: 5),
+              margin:const EdgeInsets.all(15),
+              padding:const EdgeInsets.symmetric(vertical: 5),
 
               decoration: BoxDecoration(
                 color: Colors.grey[300],
@@ -268,13 +265,13 @@ class donordash extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("pending........",
+                  const Text("pending........",
                     style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text("Next Donation",
+                  const Text("Next Donation",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w400
@@ -289,12 +286,12 @@ class donordash extends StatelessWidget {
                         elevation: 0
                       ),
                         onPressed: (){},
-                        label: Text('Learn More',
+                        label: const Text('Learn More',
                         style: TextStyle(
                           fontWeight: FontWeight.bold
                         ),
                         ),
-                        icon: Icon(Icons.forward),
+                        icon: const Icon(Icons.forward),
 
                     ),
                   )
@@ -304,8 +301,8 @@ class donordash extends StatelessWidget {
             Container(
               width: 380,
               height: 150,
-              margin: EdgeInsets.symmetric(horizontal: 15),
-              padding:EdgeInsets.symmetric(vertical: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              padding:const EdgeInsets.symmetric(vertical: 5),
 
               decoration: BoxDecoration(
                 color: Colors.grey[300],
@@ -319,7 +316,7 @@ class donordash extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Results",
+                  const Text("Results",
                     style: TextStyle(
                         fontSize: 45,
                         fontWeight: FontWeight.bold
@@ -340,12 +337,12 @@ class donordash extends StatelessWidget {
                         elevation: 0
                       ),
                         onPressed: (){},
-                        label: Text('Learn More',
+                        label: const Text('Learn More',
                         style: TextStyle(
                           fontWeight: FontWeight.bold
                         ),
                         ),
-                        icon: Icon(Icons.forward),
+                        icon: const Icon(Icons.forward),
 
                     ),
                   )

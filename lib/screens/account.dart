@@ -1,4 +1,5 @@
 import 'package:e_life_saver/screens/donordash.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,8 @@ class account extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user =  FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -24,24 +27,28 @@ class account extends StatelessWidget {
                     height: 130,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      border: Border.all(color: Colors.red, width: 6.0),
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.red.shade400, width: 6.0),
                       borderRadius: BorderRadius.circular(20)
                     ),
 
-                    child: Icon(Icons.person, size: 120,),
+                    child: const Icon(Icons.person, size: 120,),
                   ),
                   Container(
                     width: 130,
                     alignment: Alignment.centerLeft,
                     child: Column(
                       children: [
-                        Text('bts',style: TextStyle(
+                        Text('${user.displayName}',style: const TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 30
+                          fontSize: 25.0,
                         ),),
-                        Text('23423', style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                        Text('bts',style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 25.0,
+                        ),),
+                        const Text('23423', style: TextStyle(
+                            fontWeight: FontWeight.w200,
                             fontSize: 30
                         ),)
                       ],
@@ -59,18 +66,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('Name :',style:TextStyle(
+                        child: const Text('Name :',style:TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder()
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -81,18 +90,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('Phone :',style:TextStyle(
+                        child: const Text('Phone :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
                           decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -103,18 +114,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('Email :',style:TextStyle(
+                        child: const Text('Email :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
                           decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -125,18 +138,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('City :',style:TextStyle(
+                        child: const Text('City :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
                           decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -147,18 +162,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('Address :',style:TextStyle(
+                        child: const Text('Address :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                          decoration:  InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -169,18 +186,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('Old Password :',style:TextStyle(
+                        child: const Text('Old Password :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                          decoration:  InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
                       )
@@ -191,18 +210,20 @@ class account extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width:150,
-                        child: Text('New Password :',style:TextStyle(
+                        child: const Text('New Password :',style:TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400
                         ),),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.symmetric(vertical: 5),
                         width: 250,
                         height: 40,
                         child: TextFormField(
                           decoration: InputDecoration(
-                              border: OutlineInputBorder()
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
                           ),
                         ),
                       )
@@ -215,17 +236,17 @@ class account extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(150, 45),
-                    shape: StadiumBorder(),
+                    fixedSize: const Size(150, 45),
+                    shape: const StadiumBorder(),
                   ),
                   onPressed: (){
                     Navigator.push(context,
                       MaterialPageRoute(builder:
                           (context) =>
-                          donordash()
+                          const donordash()
                       ),);
                   },
-                  child: Text('Update',
+                  child: const Text('Update',
                     style:TextStyle(
                         fontSize: 20
                     ) ,

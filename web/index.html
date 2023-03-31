@@ -12,7 +12,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="$FLUTTER_BASE_HREF">
+
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -55,6 +55,26 @@
       });
     });
   </script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBf8PRmQlQTRA-Kyxl9kcJ2D1Abwgyg3Yg",
+    authDomain: "e-life-saver-1ed72.firebaseapp.com",
+    projectId: "e-life-saver-1ed72",
+    storageBucket: "e-life-saver-1ed72.appspot.com",
+    messagingSenderId: "961784242670",
+    appId: "1:961784242670:web:0a532de237f57266df6eff"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
 
 
 </body></html>

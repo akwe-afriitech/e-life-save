@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -6,6 +7,8 @@ class vaccines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user =  FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -14,7 +17,7 @@ class vaccines extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.all(20),
-              child: Text('Hey B',
+              child: Text('Hello ${user.displayName}',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold
@@ -87,7 +90,7 @@ class vaccines extends StatelessWidget {
                               border: Border.all(width: 2, color: Colors.black)
                           ),
                           child: Text(
-                            "10/01/2022",
+                            "pending...",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15
@@ -103,7 +106,7 @@ class vaccines extends StatelessWidget {
                               border: Border.all(width: 2, color: Colors.black)
                           ),
                           child: Text(
-                            "15/02/2022",
+                            "pending",
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500
@@ -119,7 +122,7 @@ class vaccines extends StatelessWidget {
                               border: Border.all(width: 2, color: Colors.black)
                           ),
                           child: Text(
-                            "20/04/2022",
+                            "pending....",
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500

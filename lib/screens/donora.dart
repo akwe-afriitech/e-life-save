@@ -15,12 +15,12 @@ class donora extends StatelessWidget {
           // ossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
                 // border: Border.all(width: 3, color: Colors.red)
               ),
-              child: Text('Appeal History',
+              child: const Text('Appeal History',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30
@@ -35,20 +35,20 @@ class donora extends StatelessWidget {
                 border: Border.all(width: 2, color: Colors.grey),
                 borderRadius: BorderRadius.circular(20)
               ),
-              child: Text("No aapeals yet"),
+              child: const Text("No aapeals yet"),
             ),
             Container(
               alignment: Alignment.center,
               child: Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(300, 60),
-                      shape: StadiumBorder(),
+                      fixedSize: const Size(300, 60),
+                      shape: const StadiumBorder(),
                     ),
                     onPressed: (){
                     },
-                    child: Text('Make New Appeal',
+                    child: const Text('Make New Appeal',
                       style:TextStyle(
                           fontSize: 20
                       ) ,
@@ -56,8 +56,8 @@ class donora extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.0),
               child: Text(
                 'Make a new blood appeal.Fill the form below to send '
                     'a request',

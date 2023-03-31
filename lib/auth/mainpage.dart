@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_life_saver/screens/init.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/donordash.dart';
 import '../screens/receipdash.dart';
@@ -39,7 +38,31 @@ class _mainpageState extends State<mainpage> {
                 }
                 print('Account does not exists in the database');
               });
-              return Center(child: Text("${user?.uid}")) ;
+              return Center(child: Container(
+                width: 200,
+                margin: const EdgeInsets.symmetric(horizontal:50),
+                padding: const EdgeInsets.symmetric(vertical:50),
+
+                child: ElevatedButton(
+                  child: const Text('signout') ,
+                  onPressed: (){
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context)=> const Center(child: CircularProgressIndicator(),)
+                    );
+                    FirebaseAuth.instance.signOut();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const init(),
+                      ),
+                    );
+
+                  },
+                ),
+
+              ),) ;
             } else {
               return const init();
             }

@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../auth/mainpage.dart';
+
 class donorreg extends StatefulWidget {
    donorreg({Key? key}) : super(key: key);
 
@@ -19,6 +21,7 @@ class _donorregState extends State<donorreg> {
   final emailController = TextEditingController();
 
    final passwordController = TextEditingController();
+   var _nameController = '';
 
    @override
    void dispose(){
@@ -41,26 +44,34 @@ class _donorregState extends State<donorreg> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(0),
-                      margin: EdgeInsets.all(0),
-                      child: Image(image:AssetImage('assets/logo.png'),),
+                      padding: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0),
+                      child: const Image(image:AssetImage('assets/logo.png'),),
                     ),
                     Container(
-                      padding: EdgeInsets.all(0),
-                      child: Text('Register To Be A Donor', style: TextStyle(
+                      padding: const EdgeInsets.all(0),
+                      child: const Text('Register To Be A Donor', style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline
                       ),),
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
+                      onChanged: (value){
+                        _nameController = value;
+                      },
+                      validator: (value){
+                        if(value != null){'Please Enter Your Name';}
+                        else
+                        { null;}
+                      },
+                        decoration: const InputDecoration(
                         labelText: 'Full Name'
                       ),
                     ),
                     TextFormField(
                       controller: emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Email'
                       ),
                       textInputAction: TextInputAction.next,
@@ -71,7 +82,7 @@ class _donorregState extends State<donorreg> {
                     ),
                     TextFormField(
                       controller: passwordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'password'
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -83,27 +94,27 @@ class _donorregState extends State<donorreg> {
                       padding: const EdgeInsets.all(15.0),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(300, 40),
-                            shape: StadiumBorder(),
+                            fixedSize: const Size(300, 40),
+                            shape: const StadiumBorder(),
                           ),
                           onPressed: signup,
-                          child: Text('Next')
+                          child: const Text('Next')
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(0),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(300, 40),
-                            shape: StadiumBorder(),
+                            fixedSize: const Size(300, 40),
+                            shape: const StadiumBorder(),
                           ),
                           onPressed:
-                              (){Navigator.push(context,
+                              (){Navigator.pushReplacement(context,
                               MaterialPageRoute(builder:
                                   (context) =>
                                     login()
                               ),);},
-                          child: Text('Login')
+                          child: const Text('Login')
                       ),
                     ),
                   ],
@@ -120,20 +131,21 @@ class _donorregState extends State<donorreg> {
    Future signup() async{
      final isValid = formkey.currentState!.validate();
      if(!isValid)return;
-
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context)=> Center(child: CircularProgressIndicator(),)
+        builder: (context)=> const Center(child: CircularProgressIndicator(),)
     );
-
      try{
        await FirebaseAuth.instance.createUserWithEmailAndPassword(
            email: emailController.text.trim(),
-           password: passwordController.text.trim(),);
+           password: passwordController.text.trim(),
+       );
+       await FirebaseAuth.instance.currentUser?.updateDisplayName(_nameController);
 
      }on FirebaseException catch (e) {
        print(e);
+
      }
     Navigator.push(context,
       MaterialPageRoute(builder:
