@@ -42,15 +42,18 @@ dependencies:
   cloud_firestore: ^4.2.0
   firebase_auth: ^4.2.1
   email_validator: ^2.1.17
+  dio: ^5.1.1
+  flutter_polyline_points: ^1.0.0
+  google_maps_flutter: ^2.2.5
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/logo.png"
+  image_path: "assets/logoplus.jpg"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "path/to/logo.png"
+    image_path: "path/logoplus.jpg"
     background_color: "#hexcode"
     theme_color: "#hexcode"
   windows:
@@ -115,9 +118,9 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_native_splash:
 
-  color: "#fffff"
-  background_image: "assets/logo.png"
 
+  background_image: "assets/logo.png"
+  color: "red"
   image: assets/logo.png
 
   # The branding property allows you to specify an image used as branding in the splash screen.
