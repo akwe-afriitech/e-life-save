@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_life_saver/screens/maps.dart';
 import 'package:flutter/material.dart';
 
 class donorbr extends StatelessWidget {
@@ -77,7 +78,11 @@ class donorbr extends StatelessWidget {
                         color: Colors.red,),
                         title: Text("Location: ${data1.docs[index]['location']} "),
                         subtitle: Text("Blood Request type: ${data1.docs[index]['bg']} "),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder:
+                          (context)=> const Maps(),
+                          ));
+                        },
                         trailing: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
